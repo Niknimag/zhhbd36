@@ -31,6 +31,12 @@
       margin-bottom: 10px;
     }
 
+    h2 {
+      font-size: 24px;
+      color: #ff69b4;
+      margin-top: 30px;
+    }
+
     p {
       font-size: 18px;
       color: #333;
@@ -88,15 +94,142 @@
       margin: 10px 0;
     }
 
-   .heart {
-  position: absolute;
-  font-size: 30px;
-  animation: floatUp 6s infinite ease-in;
-  color: red;
-}
+    .heart {
+      position: absolute;
+      font-size: 30px;
+      animation: floatUp 6s infinite ease-in;
+      color: red;
+    }
 
-@keyframes floatUp {
-  0% { top: 100%; opacity: 0; }
-  30% { opacity: 1; }
-  100% { top: -10%; opacity: 0; }
-}
+    @keyframes floatUp {
+      0% { top: 100%; opacity: 0; }
+      30% { opacity: 1; }
+      100% { top: -10%; opacity: 0; }
+    }
+
+    .danmaku {
+      position: fixed;
+      top: 0;
+      left: 100%;
+      white-space: nowrap;
+      font-size: 22px;
+      font-weight: bold;
+      animation: danmakuMove 8s linear forwards;
+      z-index: 1000;
+    }
+
+    @keyframes danmakuMove {
+      0% { left: 100%; top: var(--top); opacity: 1; }
+      100% { left: -100%; top: var(--top); opacity: 0.3; }
+    }
+
+    #output p {
+      font-size: 18px;
+      margin: 6px 0;
+      animation: breathe 4s ease-in-out infinite;
+    }
+
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); opacity: 0.95; }
+      50% { transform: scale(1.02); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 飘动心形动画 -->
+  <script>
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.textContent = "🎂";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 800);
+  </script>
+
+  <div class="glass-box">
+    <h1>🎂 Happy Birthday 🎉💖 Zhe Huang! 🥳</h1>
+    <p>May all of happiness and fortune be with you 💗💰</p>
+
+    <!-- 图片闪现 -->
+    <img src="36EDF4A5-472D-4492-BB4D-4BCCEEA8499F.jpeg" alt="Jeff's Photo" class="flash-photo">
+
+    <!-- 音乐播放按钮 -->
+    <div class="music-box">
+      <button onclick="document.getElementById('bgm').play()">🎵 Play Song</button>
+      <p>song for jeff</p>
+      <audio id="bgm" src="September.mp3" loop></audio>
+    </div>
+
+    <!-- 倒计时 -->
+    <h2>Countdown to Birthday 🕐</h2>
+    <p id="countdown" style="color:#ff69b4;"></p>
+    <script>
+      const birthday = new Date(Date.now() + 5000);
+      const countdownEl = document.getElementById("countdown");
+      function updateCountdown() {
+        const now = new Date();
+        const diff = birthday - now;
+        if (diff <= 0) {
+          countdownEl.textContent = "🎉 It's your birthday! Hugs incoming!";
+          clearInterval(timer);
+        } else {
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+          const minutes = Math.floor((diff / (1000 * 60)) % 60);
+          const seconds = Math.floor((diff / 1000) % 60);
+          countdownEl.textContent = `${days} days ${hours} hours ${minutes} mins ${seconds} secs`;
+        }
+      }
+      updateCountdown();
+      const timer = setInterval(updateCountdown, 1000);
+    </script>
+
+    <!-- 留言区 -->
+    <h2>Hi Friend! Say Something to Jeff 🙋💬</h2>
+    <input id="sender" type="text" placeholder="Your Name..." />
+    <input id="message" type="text" placeholder="Type Your Blessing Here..." />
+    <button onclick="showMessage()">Send</button>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    const colors = ['#ff69b4', '#ff85c1', '#ffa07a', '#f08080', '#ffb6c1', '#db7093', '#ff6347', '#ff4500', '#ff1493'];
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const outputEl = document.getElementById('output');
+      const messages = JSON.parse(localStorage.getItem("messages") || "[]");
+      messages.forEach(msg => {
+        const p = document.createElement('p');
+        p.textContent = msg;
+        p.style.color = colors[Math.floor(Math.random() * colors.length)];
+        p.style.fontSize = '18px';
+        p.style.margin = '6px 0';
+        outputEl.appendChild(p);
+      });
+    });
+
+    function showMessage() {
+      const name = document.getElementById('sender').value.trim();
+      const msg = document.getElementById('message').value.trim();
+      const outputEl = document.getElementById('output');
+
+      if (!name || !msg) {
+        alert("Please enter your name and message.");
+        return;
+      }
+
+      const fullMsg = `${name} says: “${msg}”`;
+
+      const newMsg = document.createElement('p');
+      newMsg.textContent = fullMsg;
+      newMsg.style.color = colors[Math.floor(Math.random() * colors.length)];
+      newMsg.style.fontSize = '18px';
+      newMsg.style.margin = '6px 0';
+      outputEl.appendChild(newMsg);
+
+      let messages = JSON.parse(localStorage.getItem("messages") || "[]");
+      messages.push(fullMsg);
+      localStorage.setItem("messages", JSON
