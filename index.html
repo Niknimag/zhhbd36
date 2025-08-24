@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Jeff!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Helvetica Neue', sans-serif;
+      background: linear-gradient(135deg, #ffe4e1, #fff0f5);
+      overflow-x: hidden;
+    }
+
+    .glass-box {
+      max-width: 700px;
+      margin: 60px auto;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 40px;
+      color: #ff69b4;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .flash-photo {
+      width: 250px;
+      border-radius: 16px;
+      margin: 20px auto;
+      display: block;
+      opacity: 0;
+      animation: flashTiny 2s ease-out forwards;
+      animation-delay: 1s;
+    }
+
+    @keyframes flashTiny {
+      0% { opacity: 0; transform: scale(0.7); }
+      40% { opacity: 1; transform: scale(1.15); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .music-box {
+      margin: 10px 0;
+      font-size: 16px;
+      color: #555;
+    }
+
+    button {
+      margin-top: 12px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 12px;
+      border: none;
+      background-color: #ff69b4;
+      color: white;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+    }
+
+    button:hover {
+      background-color: #ff85c1;
+    }
+
+    input[type="text"] {
+      width: 80%;
+      max-width: 500px;
+      font-size: 16px;
+      padding: 12px;
+      border-radius: 12px;
+      border: none;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin: 10px 0;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 30px;
+      animation
