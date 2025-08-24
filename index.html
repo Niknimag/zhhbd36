@@ -88,7 +88,15 @@
       margin: 10px 0;
     }
 
-    .heart {
-      position: absolute;
-      font-size: 30px;
-      animation
+   .heart {
+  position: absolute;
+  font-size: 30px;
+  animation: floatUp 6s infinite ease-in;
+  color: red;
+}
+
+@keyframes floatUp {
+  0% { top: 100%; opacity: 0; }
+  30% { opacity: 1; }
+  100% { top: -10%; opacity: 0; }
+}
